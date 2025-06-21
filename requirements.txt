@@ -1,0 +1,33 @@
+# Основные зависимости для агента-суммаризатора с GigaChat
+langchain>=0.1.0
+langchain-core>=0.1.0
+langchain-gigachat>=0.3.0
+langgraph>=0.1.0
+
+# Векторная БД
+qdrant-client>=1.7.0
+
+# Веб-парсинг
+requests>=2.28.0
+beautifulsoup4>=4.11.0
+lxml>=4.9.0
+
+# Работа с данными
+pandas>=1.5.0
+openpyxl>=3.0.0
+numpy>=1.24.0
+
+# Веб-интерфейс
+flask>=2.3.0
+flask-cors>=4.0.0
+
+# Утилиты
+python-dotenv>=1.0.0
+uuid>=1.30
+
+# Логирование и отладка
+colorlog>=6.7.0
+
+# Дополнительные зависимости для стабильной работы
+pydantic>=2.0.0
+typing-extensions>=4.5.0

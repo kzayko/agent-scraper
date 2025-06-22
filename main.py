@@ -100,7 +100,8 @@ def run_health_check():
             user=config.GIGACHAT_USERNAME,
             password=config.GIGACHAT_PASSWORD,
             verify_ssl_certs=config.GIGACHAT_VERIFY_SSL,
-            scope=config.GIGACHAT_SCOPE
+            scope=config.GIGACHAT_SCOPE,
+            profanity_check=config.GIGACHAT_PROFANITY_CHECK
         )
 
         test_response = llm.invoke("Привет")

@@ -40,7 +40,8 @@ class InformationSummarizerAgent:
             auth_url=config.GIGACHAT_AUTH_URL,
             scope=config.GIGACHAT_SCOPE,
             verify_ssl_certs=config.GIGACHAT_VERIFY_SSL,
-            temperature=0.1
+            profanity_check=config.GIGACHAT_PROFANITY_CHECK,
+	    temperature=0.1
         )
 
         # Инициализация вспомогательных модулей

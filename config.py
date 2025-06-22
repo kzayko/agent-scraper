@@ -23,6 +23,7 @@ GIGACHAT_BASE_URL = os.getenv('GIGACHAT_BASE_URL')
 GIGACHAT_AUTH_URL = os.getenv('GIGACHAT_AUTH_URL')
 GIGACHAT_SCOPE = os.getenv('GIGACHAT_SCOPE', 'GIGACHAT_API_PERS')
 GIGACHAT_VERIFY_SSL = os.getenv('GIGACHAT_VERIFY_SSL', 'False').lower() == 'true'
+GIGACHAT_PROFANITY_CHECK = os.getenv('GIGACHAT_PROFANITY_CHECK', 'True').lower() == 'true'
 
 # Путь к Excel файлу с источниками
 SOURCES_EXCEL_PATH = os.getenv('SOURCES_EXCEL_PATH', 'sources.xlsx')

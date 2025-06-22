@@ -73,3 +73,333 @@
 2025-06-21 22:29:25,090 - werkzeug - [32mINFO[0m - 127.0.0.1 - - [21/Jun/2025 22:29:25] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
 2025-06-21 22:29:40,660 - werkzeug - [32mINFO[0m - 127.0.0.1 - - [21/Jun/2025 22:29:40] "GET /?user_query=123412&sources_file=sources.xlsx HTTP/1.1" 200 -
 2025-06-21 22:29:40,681 - werkzeug - [32mINFO[0m - 127.0.0.1 - - [21/Jun/2025 22:29:40] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+2025-06-22 14:39:28,461 - httpcore.connection - [36mDEBUG[0m - connect_tcp.started host='localhost' port=6333 local_address=None timeout=5.0 socket_options=None
+2025-06-22 14:39:28,476 - httpcore.connection - [36mDEBUG[0m - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000021033477D10>
+2025-06-22 14:39:28,477 - httpcore.http11 - [36mDEBUG[0m - send_request_headers.started request=<Request [b'GET']>
+2025-06-22 14:39:28,478 - httpcore.http11 - [36mDEBUG[0m - send_request_headers.complete
+2025-06-22 14:39:28,479 - httpcore.http11 - [36mDEBUG[0m - send_request_body.started request=<Request [b'GET']>
+2025-06-22 14:39:28,481 - httpcore.http11 - [36mDEBUG[0m - send_request_body.complete
+2025-06-22 14:39:28,484 - httpcore.http11 - [36mDEBUG[0m - receive_response_headers.started request=<Request [b'GET']>
+2025-06-22 14:39:28,489 - httpcore.http11 - [36mDEBUG[0m - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'transfer-encoding', b'chunked'), (b'content-type', b'application/json'), (b'content-encoding', b'br'), (b'vary', b'accept-encoding, Origin, Access-Control-Request-Method, Access-Control-Request-Headers'), (b'date', b'Sun, 22 Jun 2025 11:39:28 GMT')])
+2025-06-22 14:39:28,491 - httpx - [32mINFO[0m - HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+2025-06-22 14:39:28,492 - httpcore.http11 - [36mDEBUG[0m - receive_response_body.started request=<Request [b'GET']>
+2025-06-22 14:39:28,492 - httpcore.http11 - [36mDEBUG[0m - receive_response_body.complete
+2025-06-22 14:39:28,493 - httpcore.http11 - [36mDEBUG[0m - response_closed.started
+2025-06-22 14:39:28,494 - httpcore.http11 - [36mDEBUG[0m - response_closed.complete
+2025-06-22 14:39:28,495 - httpcore.connection - [36mDEBUG[0m - close.started
+2025-06-22 14:39:28,495 - httpcore.connection - [36mDEBUG[0m - close.complete
+2025-06-22 14:39:28,497 - httpcore.connection - [36mDEBUG[0m - connect_tcp.started host='localhost' port=6333 local_address=None timeout=5.0 socket_options=None
+2025-06-22 14:39:28,526 - httpcore.connection - [36mDEBUG[0m - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000021034E02E90>
+2025-06-22 14:39:28,532 - httpcore.http11 - [36mDEBUG[0m - send_request_headers.started request=<Request [b'GET']>
+2025-06-22 14:39:28,533 - httpcore.http11 - [36mDEBUG[0m - send_request_headers.complete
+2025-06-22 14:39:28,534 - httpcore.http11 - [36mDEBUG[0m - send_request_body.started request=<Request [b'GET']>
+2025-06-22 14:39:28,535 - httpcore.http11 - [36mDEBUG[0m - send_request_body.complete
+2025-06-22 14:39:28,535 - httpcore.http11 - [36mDEBUG[0m - receive_response_headers.started request=<Request [b'GET']>
+2025-06-22 14:39:28,537 - httpcore.http11 - [36mDEBUG[0m - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'transfer-encoding', b'chunked'), (b'vary', b'accept-encoding, Origin, Access-Control-Request-Method, Access-Control-Request-Headers'), (b'content-type', b'application/json'), (b'content-encoding', b'br'), (b'date', b'Sun, 22 Jun 2025 11:39:28 GMT')])
+2025-06-22 14:39:28,538 - httpx - [32mINFO[0m - HTTP Request: GET http://localhost:6333/collections "HTTP/1.1 200 OK"
+2025-06-22 14:39:28,539 - httpcore.http11 - [36mDEBUG[0m - receive_response_body.started request=<Request [b'GET']>
+2025-06-22 14:39:28,540 - httpcore.http11 - [36mDEBUG[0m - receive_response_body.complete
+2025-06-22 14:39:28,540 - httpcore.http11 - [36mDEBUG[0m - response_closed.started
+2025-06-22 14:39:28,541 - httpcore.http11 - [36mDEBUG[0m - response_closed.complete
+2025-06-22 14:39:28,541 - httpcore.connection - [36mDEBUG[0m - close.started
+2025-06-22 14:39:28,542 - httpcore.connection - [36mDEBUG[0m - close.complete
+2025-06-22 14:39:28,548 - httpcore.connection - [36mDEBUG[0m - connect_tcp.started host='localhost' port=6333 local_address=None timeout=5.0 socket_options=None
+2025-06-22 14:39:28,573 - httpcore.connection - [36mDEBUG[0m - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000021034E0EB10>
+2025-06-22 14:39:28,574 - httpcore.http11 - [36mDEBUG[0m - send_request_headers.started request=<Request [b'GET']>
+2025-06-22 14:39:28,576 - httpcore.http11 - [36mDEBUG[0m - send_request_headers.complete
+2025-06-22 14:39:28,577 - httpcore.http11 - [36mDEBUG[0m - send_request_body.started request=<Request [b'GET']>
+2025-06-22 14:39:28,577 - httpcore.http11 - [36mDEBUG[0m - send_request_body.complete
+2025-06-22 14:39:28,578 - httpcore.http11 - [36mDEBUG[0m - receive_response_headers.started request=<Request [b'GET']>
+2025-06-22 14:39:28,581 - httpcore.http11 - [36mDEBUG[0m - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'transfer-encoding', b'chunked'), (b'vary', b'accept-encoding, Origin, Access-Control-Request-Method, Access-Control-Request-Headers'), (b'content-type', b'application/json'), (b'content-encoding', b'br'), (b'date', b'Sun, 22 Jun 2025 11:39:28 GMT')])
+2025-06-22 14:39:28,582 - httpx - [32mINFO[0m - HTTP Request: GET http://localhost:6333/collections/info_agent_embeddings "HTTP/1.1 200 OK"
+2025-06-22 14:39:28,582 - httpcore.http11 - [36mDEBUG[0m - receive_response_body.started request=<Request [b'GET']>
+2025-06-22 14:39:28,583 - httpcore.http11 - [36mDEBUG[0m - receive_response_body.complete
+2025-06-22 14:39:28,584 - httpcore.http11 - [36mDEBUG[0m - response_closed.started
+2025-06-22 14:39:28,584 - httpcore.http11 - [36mDEBUG[0m - response_closed.complete
+2025-06-22 14:39:28,585 - httpcore.connection - [36mDEBUG[0m - close.started
+2025-06-22 14:39:28,585 - httpcore.connection - [36mDEBUG[0m - close.complete
+2025-06-22 14:39:28,593 - httpcore.connection - [36mDEBUG[0m - connect_tcp.started host='gigachat.sberdevices.ru' port=443 local_address=None timeout=600.0 socket_options=None
+2025-06-22 14:39:28,635 - httpcore.connection - [36mDEBUG[0m - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000021034E1A7D0>
+2025-06-22 14:39:28,636 - httpcore.connection - [36mDEBUG[0m - start_tls.started ssl_context=<ssl.SSLContext object at 0x0000021034DD5250> server_hostname='gigachat.sberdevices.ru' timeout=600.0
+2025-06-22 14:39:28,663 - httpcore.connection - [36mDEBUG[0m - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000021034E00890>
+2025-06-22 14:39:28,664 - httpcore.http11 - [36mDEBUG[0m - send_request_headers.started request=<Request [b'POST']>
+2025-06-22 14:39:28,664 - httpcore.http11 - [36mDEBUG[0m - send_request_headers.complete
+2025-06-22 14:39:28,665 - httpcore.http11 - [36mDEBUG[0m - send_request_body.started request=<Request [b'POST']>
+2025-06-22 14:39:28,666 - httpcore.http11 - [36mDEBUG[0m - send_request_body.complete
+2025-06-22 14:39:28,670 - httpcore.http11 - [36mDEBUG[0m - receive_response_headers.started request=<Request [b'POST']>
+2025-06-22 14:39:28,763 - httpcore.http11 - [36mDEBUG[0m - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Server', b'nginx'), (b'Date', b'Sun, 22 Jun 2025 11:39:28 GMT'), (b'Content-Type', b'application/json; charset=utf-8'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Keep-Alive', b'timeout=15'), (b'Vary', b'Accept-Encoding'), (b'set-cookie', b'spid=1750592368865_33f4d6cf104427c2c7d73a5022b116e3_r8ptxxpxevoseokc; Expires=Tue, 19 Jan 2038 03:14:07 GMT; Path=/; Secure; SameSite=None'), (b'access-control-allow-credentials', b'true'), (b'access-control-allow-headers', b'Origin, X-Requested-With, Content-Type, Accept, Authorization'), (b'access-control-allow-methods', b'GET, POST, DELETE, OPTIONS'), (b'access-control-allow-origin', b'https://beta.saluteai.sberdevices.ru'), (b'x-request-id', b'a1a41964-7dab-4f1b-8c2b-c928f01d26fd'), (b'x-session-id', b'adc78626-f802-4e24-929c-d37b5945e9a5'), (b'strict-transport-security', b'max-age=15768000; includeSubdomains; preload'), (b'x-content-type-options', b'nosniff'), (b'x-xss-protection', b'1; mode=block'), (b'x-frame-options', b'SAMEORIGIN'), (b'X-SP-CRID', b'26019157623:1'), (b'Content-Encoding', b'gzip')])
+2025-06-22 14:39:28,765 - httpx - [32mINFO[0m - HTTP Request: POST https://gigachat.sberdevices.ru/v1/token "HTTP/1.1 200 OK"
+2025-06-22 14:39:28,767 - httpcore.http11 - [36mDEBUG[0m - receive_response_body.started request=<Request [b'POST']>
+2025-06-22 14:39:28,768 - httpcore.http11 - [36mDEBUG[0m - receive_response_body.complete
+2025-06-22 14:39:28,768 - httpcore.http11 - [36mDEBUG[0m - response_closed.started
+2025-06-22 14:39:28,769 - httpcore.http11 - [36mDEBUG[0m - response_closed.complete
+2025-06-22 14:39:28,769 - gigachat.client - [32mINFO[0m - UPDATE TOKEN
+2025-06-22 14:39:28,770 - httpcore.http11 - [36mDEBUG[0m - send_request_headers.started request=<Request [b'POST']>
+2025-06-22 14:39:28,770 - httpcore.http11 - [36mDEBUG[0m - send_request_headers.complete
+2025-06-22 14:39:28,770 - httpcore.http11 - [36mDEBUG[0m - send_request_body.started request=<Request [b'POST']>
+2025-06-22 14:39:28,771 - httpcore.http11 - [36mDEBUG[0m - send_request_body.complete
+2025-06-22 14:39:28,771 - httpcore.http11 - [36mDEBUG[0m - receive_response_headers.started request=<Request [b'POST']>
+2025-06-22 14:39:28,825 - httpcore.http11 - [36mDEBUG[0m - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Server', b'nginx'), (b'Date', b'Sun, 22 Jun 2025 11:39:29 GMT'), (b'Content-Type', b'application/json; charset=utf-8'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Keep-Alive', b'timeout=15'), (b'Vary', b'Accept-Encoding'), (b'access-control-allow-credentials', b'true'), (b'access-control-allow-headers', b'Origin, X-Requested-With, Content-Type, Accept, Authorization'), (b'access-control-allow-methods', b'GET, POST, DELETE, OPTIONS'), (b'access-control-allow-origin', b'https://beta.saluteai.sberdevices.ru'), (b'x-request-id', b'46bf5117-e61a-4c4f-8d09-9c08dd7ec90f'), (b'x-session-id', b'd9ddf3d4-9162-4121-9452-5c453a2c17b2'), (b'strict-transport-security', b'max-age=15768000; includeSubdomains; preload'), (b'x-content-type-options', b'nosniff'), (b'x-xss-protection', b'1; mode=block'), (b'x-frame-options', b'SAMEORIGIN'), (b'X-SP-CRID', b'26019157623:2'), (b'Content-Encoding', b'gzip')])
+2025-06-22 14:39:28,826 - httpx - [32mINFO[0m - HTTP Request: POST https://gigachat.sberdevices.ru/v1/embeddings "HTTP/1.1 200 OK"
+2025-06-22 14:39:28,832 - httpcore.http11 - [36mDEBUG[0m - receive_response_body.started request=<Request [b'POST']>
+2025-06-22 14:39:28,833 - httpcore.http11 - [36mDEBUG[0m - receive_response_body.complete
+2025-06-22 14:39:28,833 - httpcore.http11 - [36mDEBUG[0m - response_closed.started
+2025-06-22 14:39:28,834 - httpcore.http11 - [36mDEBUG[0m - response_closed.complete
+2025-06-22 14:39:28,835 - utils.vector_db - [32mINFO[0m - Определена размерность векторов GigaChat: 1024
+2025-06-22 14:39:28,835 - utils.vector_db - [32mINFO[0m - Коллекция 'info_agent_embeddings' уже существует с размерностью 1024
+2025-06-22 14:39:28,844 - agent - [32mINFO[0m - Агент-суммаризатор инициализирован с GigaChat
+2025-06-22 14:39:28,844 - agent - [32mINFO[0m - Начало обработки запроса: Анализ рынка
+2025-06-22 14:39:28,845 - httpcore.connection - [36mDEBUG[0m - connect_tcp.started host='localhost' port=6333 local_address=None timeout=5.0 socket_options=None
+2025-06-22 14:39:28,846 - httpcore.connection - [36mDEBUG[0m - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000021034E85B10>
+2025-06-22 14:39:28,847 - httpcore.http11 - [36mDEBUG[0m - send_request_headers.started request=<Request [b'DELETE']>
+2025-06-22 14:39:28,848 - httpcore.http11 - [36mDEBUG[0m - send_request_headers.complete
+2025-06-22 14:39:28,848 - httpcore.http11 - [36mDEBUG[0m - send_request_body.started request=<Request [b'DELETE']>
+2025-06-22 14:39:28,848 - httpcore.http11 - [36mDEBUG[0m - send_request_body.complete
+2025-06-22 14:39:28,849 - httpcore.http11 - [36mDEBUG[0m - receive_response_headers.started request=<Request [b'DELETE']>
+2025-06-22 14:39:28,996 - httpcore.http11 - [36mDEBUG[0m - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'transfer-encoding', b'chunked'), (b'content-type', b'application/json'), (b'vary', b'accept-encoding, Origin, Access-Control-Request-Method, Access-Control-Request-Headers'), (b'content-encoding', b'br'), (b'date', b'Sun, 22 Jun 2025 11:39:28 GMT')])
+2025-06-22 14:39:28,997 - httpx - [32mINFO[0m - HTTP Request: DELETE http://localhost:6333/collections/info_agent_embeddings "HTTP/1.1 200 OK"
+2025-06-22 14:39:28,999 - httpcore.http11 - [36mDEBUG[0m - receive_response_body.started request=<Request [b'DELETE']>
+2025-06-22 14:39:28,999 - httpcore.http11 - [36mDEBUG[0m - receive_response_body.complete
+2025-06-22 14:39:29,000 - httpcore.http11 - [36mDEBUG[0m - response_closed.started
+2025-06-22 14:39:29,000 - httpcore.http11 - [36mDEBUG[0m - response_closed.complete
+2025-06-22 14:39:29,001 - httpcore.connection - [36mDEBUG[0m - close.started
+2025-06-22 14:39:29,001 - httpcore.connection - [36mDEBUG[0m - close.complete
+2025-06-22 14:39:29,003 - httpcore.connection - [36mDEBUG[0m - connect_tcp.started host='localhost' port=6333 local_address=None timeout=5.0 socket_options=None
+2025-06-22 14:39:29,005 - httpcore.connection - [36mDEBUG[0m - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000021034E82D90>
+2025-06-22 14:39:29,005 - httpcore.http11 - [36mDEBUG[0m - send_request_headers.started request=<Request [b'GET']>
+2025-06-22 14:39:29,006 - httpcore.http11 - [36mDEBUG[0m - send_request_headers.complete
+2025-06-22 14:39:29,006 - httpcore.http11 - [36mDEBUG[0m - send_request_body.started request=<Request [b'GET']>
+2025-06-22 14:39:29,007 - httpcore.http11 - [36mDEBUG[0m - send_request_body.complete
+2025-06-22 14:39:29,007 - httpcore.http11 - [36mDEBUG[0m - receive_response_headers.started request=<Request [b'GET']>
+2025-06-22 14:39:29,007 - httpcore.http11 - [36mDEBUG[0m - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'transfer-encoding', b'chunked'), (b'content-encoding', b'br'), (b'content-type', b'application/json'), (b'vary', b'accept-encoding, Origin, Access-Control-Request-Method, Access-Control-Request-Headers'), (b'date', b'Sun, 22 Jun 2025 11:39:28 GMT')])
+2025-06-22 14:39:29,009 - httpx - [32mINFO[0m - HTTP Request: GET http://localhost:6333/collections "HTTP/1.1 200 OK"
+2025-06-22 14:39:29,016 - httpcore.http11 - [36mDEBUG[0m - receive_response_body.started request=<Request [b'GET']>
+2025-06-22 14:39:29,017 - httpcore.http11 - [36mDEBUG[0m - receive_response_body.complete
+2025-06-22 14:39:29,017 - httpcore.http11 - [36mDEBUG[0m - response_closed.started
+2025-06-22 14:39:29,017 - httpcore.http11 - [36mDEBUG[0m - response_closed.complete
+2025-06-22 14:39:29,019 - httpcore.connection - [36mDEBUG[0m - close.started
+2025-06-22 14:39:29,019 - httpcore.connection - [36mDEBUG[0m - close.complete
+2025-06-22 14:39:29,021 - httpcore.connection - [36mDEBUG[0m - connect_tcp.started host='localhost' port=6333 local_address=None timeout=5.0 socket_options=None
+2025-06-22 14:39:29,041 - httpcore.connection - [36mDEBUG[0m - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000021034E83E10>
+2025-06-22 14:39:29,042 - httpcore.http11 - [36mDEBUG[0m - send_request_headers.started request=<Request [b'PUT']>
+2025-06-22 14:39:29,044 - httpcore.http11 - [36mDEBUG[0m - send_request_headers.complete
+2025-06-22 14:39:29,044 - httpcore.http11 - [36mDEBUG[0m - send_request_body.started request=<Request [b'PUT']>
+2025-06-22 14:39:29,045 - httpcore.http11 - [36mDEBUG[0m - send_request_body.complete
+2025-06-22 14:39:29,045 - httpcore.http11 - [36mDEBUG[0m - receive_response_headers.started request=<Request [b'PUT']>
+2025-06-22 14:39:29,519 - httpcore.http11 - [36mDEBUG[0m - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'transfer-encoding', b'chunked'), (b'content-type', b'application/json'), (b'content-encoding', b'br'), (b'vary', b'accept-encoding, Origin, Access-Control-Request-Method, Access-Control-Request-Headers'), (b'date', b'Sun, 22 Jun 2025 11:39:29 GMT')])
+2025-06-22 14:39:29,519 - httpx - [32mINFO[0m - HTTP Request: PUT http://localhost:6333/collections/info_agent_embeddings "HTTP/1.1 200 OK"
+2025-06-22 14:39:29,522 - httpcore.http11 - [36mDEBUG[0m - receive_response_body.started request=<Request [b'PUT']>
+2025-06-22 14:39:29,522 - httpcore.http11 - [36mDEBUG[0m - receive_response_body.complete
+2025-06-22 14:39:29,523 - httpcore.http11 - [36mDEBUG[0m - response_closed.started
+2025-06-22 14:39:29,523 - httpcore.http11 - [36mDEBUG[0m - response_closed.complete
+2025-06-22 14:39:29,524 - httpcore.connection - [36mDEBUG[0m - close.started
+2025-06-22 14:39:29,524 - httpcore.connection - [36mDEBUG[0m - close.complete
+2025-06-22 14:39:29,525 - utils.vector_db - [32mINFO[0m - Создана коллекция 'info_agent_embeddings' с размерностью 1024
+2025-06-22 14:39:29,525 - utils.vector_db - [32mINFO[0m - Коллекция 'info_agent_embeddings' очищена
+2025-06-22 14:39:29,549 - agent - [32mINFO[0m - Шаг 1: Генерация вопросов
+2025-06-22 14:39:29,552 - httpcore.connection - [36mDEBUG[0m - connect_tcp.started host='gigachat.sberdevices.ru' port=443 local_address=None timeout=30.0 socket_options=None
+2025-06-22 14:39:29,582 - httpcore.connection - [36mDEBUG[0m - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000021034EA1A50>
+2025-06-22 14:39:29,584 - httpcore.connection - [36mDEBUG[0m - start_tls.started ssl_context=<ssl.SSLContext object at 0x0000021034DD5E20> server_hostname='gigachat.sberdevices.ru' timeout=30.0
+2025-06-22 14:39:29,596 - httpcore.connection - [36mDEBUG[0m - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000021034E85590>
+2025-06-22 14:39:29,597 - httpcore.http11 - [36mDEBUG[0m - send_request_headers.started request=<Request [b'POST']>
+2025-06-22 14:39:29,597 - httpcore.http11 - [36mDEBUG[0m - send_request_headers.complete
+2025-06-22 14:39:29,598 - httpcore.http11 - [36mDEBUG[0m - send_request_body.started request=<Request [b'POST']>
+2025-06-22 14:39:29,604 - httpcore.http11 - [36mDEBUG[0m - send_request_body.complete
+2025-06-22 14:39:29,605 - httpcore.http11 - [36mDEBUG[0m - receive_response_headers.started request=<Request [b'POST']>
+2025-06-22 14:39:29,693 - httpcore.http11 - [36mDEBUG[0m - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Server', b'nginx'), (b'Date', b'Sun, 22 Jun 2025 11:39:29 GMT'), (b'Content-Type', b'application/json; charset=utf-8'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Keep-Alive', b'timeout=15'), (b'Vary', b'Accept-Encoding'), (b'set-cookie', b'spid=1750592369796_ee100a4b84c1df7f6dc7ae9ddf4a5512_fk8qfst0v604qvjf; Expires=Tue, 19 Jan 2038 03:14:07 GMT; Path=/; Secure; SameSite=None'), (b'access-control-allow-credentials', b'true'), (b'access-control-allow-headers', b'Origin, X-Requested-With, Content-Type, Accept, Authorization'), (b'access-control-allow-methods', b'GET, POST, DELETE, OPTIONS'), (b'access-control-allow-origin', b'https://beta.saluteai.sberdevices.ru'), (b'x-request-id', b'6f4e73bc-3df6-4012-8d39-967402c990f3'), (b'x-session-id', b'98404d82-0e7c-42f0-af9d-f04c33e31d0d'), (b'strict-transport-security', b'max-age=15768000; includeSubdomains; preload'), (b'x-content-type-options', b'nosniff'), (b'x-xss-protection', b'1; mode=block'), (b'x-frame-options', b'SAMEORIGIN'), (b'X-SP-CRID', b'3350902299:1'), (b'Content-Encoding', b'gzip')])
+2025-06-22 14:39:29,695 - httpx - [32mINFO[0m - HTTP Request: POST https://gigachat.sberdevices.ru/v1/token "HTTP/1.1 200 OK"
+2025-06-22 14:39:29,697 - httpcore.http11 - [36mDEBUG[0m - receive_response_body.started request=<Request [b'POST']>
+2025-06-22 14:39:29,697 - httpcore.http11 - [36mDEBUG[0m - receive_response_body.complete
+2025-06-22 14:39:29,698 - httpcore.http11 - [36mDEBUG[0m - response_closed.started
+2025-06-22 14:39:29,698 - httpcore.http11 - [36mDEBUG[0m - response_closed.complete
+2025-06-22 14:39:29,699 - gigachat.client - [32mINFO[0m - UPDATE TOKEN
+2025-06-22 14:39:29,700 - httpcore.http11 - [36mDEBUG[0m - send_request_headers.started request=<Request [b'POST']>
+2025-06-22 14:39:29,701 - httpcore.http11 - [36mDEBUG[0m - send_request_headers.complete
+2025-06-22 14:39:29,701 - httpcore.http11 - [36mDEBUG[0m - send_request_body.started request=<Request [b'POST']>
+2025-06-22 14:39:29,702 - httpcore.http11 - [36mDEBUG[0m - send_request_body.complete
+2025-06-22 14:39:29,702 - httpcore.http11 - [36mDEBUG[0m - receive_response_headers.started request=<Request [b'POST']>
+2025-06-22 14:39:31,672 - httpcore.http11 - [36mDEBUG[0m - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Server', b'nginx'), (b'Date', b'Sun, 22 Jun 2025 11:39:31 GMT'), (b'Content-Type', b'application/json; charset=utf-8'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Keep-Alive', b'timeout=15'), (b'Vary', b'Accept-Encoding'), (b'Access-Control-Allow-Credentials', b'true'), (b'Access-Control-Allow-Headers', b'Origin, X-Requested-With, Content-Type, Accept, Authorization'), (b'Access-Control-Allow-Methods', b'GET, POST, DELETE, OPTIONS'), (b'Access-Control-Allow-Origin', b'https://beta.saluteai.sberdevices.ru'), (b'X-Request-Id', b'cea139a2-8589-4f71-b2e4-8965e8c6f2d5'), (b'X-Session-Id', b'd67dbb48-6700-4a4e-a10a-89f167b85e0d'), (b'Strict-Transport-Security', b'max-age=15768000; includeSubdomains; preload'), (b'X-Content-Type-Options', b'nosniff'), (b'X-XSS-Protection', b'1; mode=block'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'Content-Encoding', b'gzip')])
+2025-06-22 14:39:31,673 - httpx - [32mINFO[0m - HTTP Request: POST https://gigachat.sberdevices.ru/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-22 14:39:31,676 - httpcore.http11 - [36mDEBUG[0m - receive_response_body.started request=<Request [b'POST']>
+2025-06-22 14:39:31,677 - httpcore.http11 - [36mDEBUG[0m - receive_response_body.complete
+2025-06-22 14:39:31,677 - httpcore.http11 - [36mDEBUG[0m - response_closed.started
+2025-06-22 14:39:31,677 - httpcore.http11 - [36mDEBUG[0m - response_closed.complete
+2025-06-22 14:39:31,679 - agent - [31mERROR[0m - Ошибка парсинга JSON ответа: Expecting value: line 1 column 1 (char 0)
+2025-06-22 14:39:31,680 - agent - [32mINFO[0m - Шаг 2: Загрузка источников
+2025-06-22 14:39:32,185 - agent - [32mINFO[0m - Загружено 5 источников из sources.xlsx
+2025-06-22 14:39:32,187 - agent - [32mINFO[0m - Шаг 3: Обработка источников
+2025-06-22 14:39:32,188 - agent - [32mINFO[0m - Обработка источника 1/5: https://ru.wikipedia.org/wiki/Машинное_обучение
+2025-06-22 14:39:32,189 - utils.web_parser - [32mINFO[0m - Парсинг URL: https://ru.wikipedia.org/wiki/Машинное_обучение
+2025-06-22 14:39:32,820 - utils.web_parser - [32mINFO[0m - Успешно извлечен контент из https://ru.wikipedia.org/wiki/Машинное_обучение (17492 символов)
+2025-06-22 14:39:32,822 - utils.text_processor - [32mINFO[0m - Текст разбит на 20 блоков
+2025-06-22 14:39:32,823 - agent - [32mINFO[0m - Из источника https://ru.wikipedia.org/wiki/Машинное_обучение извлечено 20 блоков
+2025-06-22 14:39:32,823 - agent - [32mINFO[0m - Обработка источника 2/5: https://ru.wikipedia.org/wiki/Искусственный_интеллект
+2025-06-22 14:39:32,824 - utils.web_parser - [32mINFO[0m - Парсинг URL: https://ru.wikipedia.org/wiki/Искусственный_интеллект
+2025-06-22 14:39:33,139 - utils.web_parser - [32mINFO[0m - Успешно извлечен контент из https://ru.wikipedia.org/wiki/Искусственный_интеллект (106347 символов)
+2025-06-22 14:39:33,146 - utils.text_processor - [32mINFO[0m - Текст разбит на 118 блоков
+2025-06-22 14:39:33,147 - agent - [32mINFO[0m - Из источника https://ru.wikipedia.org/wiki/Искусственный_интеллект извлечено 118 блоков
+2025-06-22 14:39:33,147 - agent - [32mINFO[0m - Обработка источника 3/5: https://habr.com/ru/articles/artificial-intelligence/
+2025-06-22 14:39:33,148 - utils.web_parser - [32mINFO[0m - Парсинг URL: https://habr.com/ru/articles/artificial-intelligence/
+2025-06-22 14:39:33,479 - utils.web_parser - [33mWARNING[0m - Попытка 1/3 не удалась для https://habr.com/ru/articles/artificial-intelligence/: 404 Client Error: Not Found for url: https://habr.com/ru/articles/artificial-intelligence/
+2025-06-22 14:39:34,585 - utils.web_parser - [33mWARNING[0m - Попытка 2/3 не удалась для https://habr.com/ru/articles/artificial-intelligence/: 404 Client Error: Not Found for url: https://habr.com/ru/articles/artificial-intelligence/
+2025-06-22 14:39:36,701 - utils.web_parser - [33mWARNING[0m - Попытка 3/3 не удалась для https://habr.com/ru/articles/artificial-intelligence/: 404 Client Error: Not Found for url: https://habr.com/ru/articles/artificial-intelligence/
+2025-06-22 14:39:36,702 - utils.web_parser - [31mERROR[0m - Не удалось загрузить https://habr.com/ru/articles/artificial-intelligence/ после 3 попыток
+2025-06-22 14:39:36,705 - agent - [33mWARNING[0m - Не удалось извлечь контент из https://habr.com/ru/articles/artificial-intelligence/
+2025-06-22 14:39:36,705 - agent - [32mINFO[0m - Обработка источника 4/5: https://www.tadviser.ru/index.php/Статья:Машинное_обучение
+2025-06-22 14:39:36,706 - utils.web_parser - [32mINFO[0m - Парсинг URL: https://www.tadviser.ru/index.php/Статья:Машинное_обучение
+2025-06-22 14:39:36,917 - utils.web_parser - [33mWARNING[0m - Попытка 1/3 не удалась для https://www.tadviser.ru/index.php/Статья:Машинное_обучение: 404 Client Error: Not Found for url: https://www.tadviser.ru/index.php/%D0%A1%D1%82%D0%B0%D1%82%D1%8C%D1%8F:%D0%9C%D0%B0%D1%88%D0%B8%D0%BD%D0%BD%D0%BE%D0%B5_%D0%BE%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5
+2025-06-22 14:39:38,078 - utils.web_parser - [32mINFO[0m - Успешно извлечен контент из https://www.tadviser.ru/index.php/Статья:Машинное_обучение (3411 символов)
+2025-06-22 14:39:38,079 - utils.text_processor - [32mINFO[0m - Текст разбит на 5 блоков
+2025-06-22 14:39:38,081 - agent - [32mINFO[0m - Из источника https://www.tadviser.ru/index.php/Статья:Машинное_обучение извлечено 5 блоков
+2025-06-22 14:39:38,081 - agent - [32mINFO[0m - Обработка источника 5/5: https://neurohive.io/ru/osnovy-data-science/chto-takoe-mashinnoe-obuchenie/
+2025-06-22 14:39:38,083 - utils.web_parser - [32mINFO[0m - Парсинг URL: https://neurohive.io/ru/osnovy-data-science/chto-takoe-mashinnoe-obuchenie/
+2025-06-22 14:39:38,435 - utils.web_parser - [33mWARNING[0m - Попытка 1/3 не удалась для https://neurohive.io/ru/osnovy-data-science/chto-takoe-mashinnoe-obuchenie/: 404 Client Error: Not Found for url: https://neurohive.io/ru/osnovy-data-science/chto-takoe-mashinnoe-obuchenie/
+2025-06-22 14:39:39,679 - utils.web_parser - [33mWARNING[0m - Попытка 2/3 не удалась для https://neurohive.io/ru/osnovy-data-science/chto-takoe-mashinnoe-obuchenie/: 404 Client Error: Not Found for url: https://neurohive.io/ru/osnovy-data-science/chto-takoe-mashinnoe-obuchenie/
+2025-06-22 14:39:42,056 - utils.web_parser - [33mWARNING[0m - Попытка 3/3 не удалась для https://neurohive.io/ru/osnovy-data-science/chto-takoe-mashinnoe-obuchenie/: 404 Client Error: Not Found for url: https://neurohive.io/ru/osnovy-data-science/chto-takoe-mashinnoe-obuchenie/
+2025-06-22 14:39:42,057 - utils.web_parser - [31mERROR[0m - Не удалось загрузить https://neurohive.io/ru/osnovy-data-science/chto-takoe-mashinnoe-obuchenie/ после 3 попыток
+2025-06-22 14:39:42,059 - agent - [33mWARNING[0m - Не удалось извлечь контент из https://neurohive.io/ru/osnovy-data-science/chto-takoe-mashinnoe-obuchenie/
+2025-06-22 14:39:42,060 - agent - [32mINFO[0m - Добавление документов в векторную БД...
+2025-06-22 14:39:42,061 - httpcore.connection - [36mDEBUG[0m - close.started
+2025-06-22 14:39:42,061 - httpcore.connection - [36mDEBUG[0m - close.complete
+2025-06-22 14:39:42,062 - httpcore.connection - [36mDEBUG[0m - connect_tcp.started host='gigachat.sberdevices.ru' port=443 local_address=None timeout=600.0 socket_options=None
+2025-06-22 14:39:42,094 - httpcore.connection - [36mDEBUG[0m - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000210356A9990>
+2025-06-22 14:39:42,095 - httpcore.connection - [36mDEBUG[0m - start_tls.started ssl_context=<ssl.SSLContext object at 0x0000021034DD5250> server_hostname='gigachat.sberdevices.ru' timeout=600.0
+2025-06-22 14:39:42,109 - httpcore.connection - [36mDEBUG[0m - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000210356AA950>
+2025-06-22 14:39:42,111 - httpcore.http11 - [36mDEBUG[0m - send_request_headers.started request=<Request [b'POST']>
+2025-06-22 14:39:42,111 - httpcore.http11 - [36mDEBUG[0m - send_request_headers.complete
+2025-06-22 14:39:42,112 - httpcore.http11 - [36mDEBUG[0m - send_request_body.started request=<Request [b'POST']>
+2025-06-22 14:39:42,112 - httpcore.http11 - [36mDEBUG[0m - send_request_body.complete
+2025-06-22 14:39:42,112 - httpcore.http11 - [36mDEBUG[0m - receive_response_headers.started request=<Request [b'POST']>
+2025-06-22 14:39:42,985 - httpcore.http11 - [36mDEBUG[0m - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Server', b'nginx'), (b'Date', b'Sun, 22 Jun 2025 11:39:43 GMT'), (b'Content-Type', b'application/json; charset=utf-8'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Keep-Alive', b'timeout=15'), (b'Vary', b'Accept-Encoding'), (b'access-control-allow-credentials', b'true'), (b'access-control-allow-headers', b'Origin, X-Requested-With, Content-Type, Accept, Authorization'), (b'access-control-allow-methods', b'GET, POST, DELETE, OPTIONS'), (b'access-control-allow-origin', b'https://beta.saluteai.sberdevices.ru'), (b'x-request-id', b'388b5d6c-8ee3-46a8-94ce-05f3081898a6'), (b'x-session-id', b'85908811-424d-4852-b56e-c365cf5a121a'), (b'strict-transport-security', b'max-age=15768000; includeSubdomains; preload'), (b'x-content-type-options', b'nosniff'), (b'x-xss-protection', b'1; mode=block'), (b'x-frame-options', b'SAMEORIGIN'), (b'X-SP-CRID', b'40234413153:1'), (b'Content-Encoding', b'gzip')])
+2025-06-22 14:39:42,986 - httpx - [32mINFO[0m - HTTP Request: POST https://gigachat.sberdevices.ru/v1/embeddings "HTTP/1.1 200 OK"
+2025-06-22 14:39:42,988 - httpcore.http11 - [36mDEBUG[0m - receive_response_body.started request=<Request [b'POST']>
+2025-06-22 14:39:43,067 - httpcore.http11 - [36mDEBUG[0m - receive_response_body.complete
+2025-06-22 14:39:43,068 - httpcore.http11 - [36mDEBUG[0m - response_closed.started
+2025-06-22 14:39:43,071 - httpcore.http11 - [36mDEBUG[0m - response_closed.complete
+2025-06-22 14:39:43,128 - httpcore.http11 - [36mDEBUG[0m - send_request_headers.started request=<Request [b'POST']>
+2025-06-22 14:39:43,130 - httpcore.http11 - [36mDEBUG[0m - send_request_headers.complete
+2025-06-22 14:39:43,131 - httpcore.http11 - [36mDEBUG[0m - send_request_body.started request=<Request [b'POST']>
+2025-06-22 14:39:43,132 - httpcore.http11 - [36mDEBUG[0m - send_request_body.complete
+2025-06-22 14:39:43,133 - httpcore.http11 - [36mDEBUG[0m - receive_response_headers.started request=<Request [b'POST']>
+2025-06-22 14:39:43,674 - httpcore.http11 - [36mDEBUG[0m - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Server', b'nginx'), (b'Date', b'Sun, 22 Jun 2025 11:39:43 GMT'), (b'Content-Type', b'application/json; charset=utf-8'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Keep-Alive', b'timeout=15'), (b'Vary', b'Accept-Encoding'), (b'access-control-allow-credentials', b'true'), (b'access-control-allow-headers', b'Origin, X-Requested-With, Content-Type, Accept, Authorization'), (b'access-control-allow-methods', b'GET, POST, DELETE, OPTIONS'), (b'access-control-allow-origin', b'https://beta.saluteai.sberdevices.ru'), (b'x-request-id', b'da2da81a-eeee-43fd-af51-aee339c86356'), (b'x-session-id', b'd950816c-3444-42f0-88c4-2f2defe6a8f6'), (b'strict-transport-security', b'max-age=15768000; includeSubdomains; preload'), (b'x-content-type-options', b'nosniff'), (b'x-xss-protection', b'1; mode=block'), (b'x-frame-options', b'SAMEORIGIN'), (b'X-SP-CRID', b'40234413153:2'), (b'Content-Encoding', b'gzip')])
+2025-06-22 14:39:43,676 - httpx - [32mINFO[0m - HTTP Request: POST https://gigachat.sberdevices.ru/v1/embeddings "HTTP/1.1 200 OK"
+2025-06-22 14:39:43,678 - httpcore.http11 - [36mDEBUG[0m - receive_response_body.started request=<Request [b'POST']>
+2025-06-22 14:39:43,702 - httpcore.http11 - [36mDEBUG[0m - receive_response_body.complete
+2025-06-22 14:39:43,703 - httpcore.http11 - [36mDEBUG[0m - response_closed.started
+2025-06-22 14:39:43,703 - httpcore.http11 - [36mDEBUG[0m - response_closed.complete
+2025-06-22 14:39:43,793 - httpcore.connection - [36mDEBUG[0m - connect_tcp.started host='localhost' port=6333 local_address=None timeout=5.0 socket_options=None
+2025-06-22 14:39:43,815 - httpcore.connection - [36mDEBUG[0m - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000210356CEA90>
+2025-06-22 14:39:43,816 - httpcore.http11 - [36mDEBUG[0m - send_request_headers.started request=<Request [b'PUT']>
+2025-06-22 14:39:43,816 - httpcore.http11 - [36mDEBUG[0m - send_request_headers.complete
+2025-06-22 14:39:43,817 - httpcore.http11 - [36mDEBUG[0m - send_request_body.started request=<Request [b'PUT']>
+2025-06-22 14:39:43,819 - httpcore.http11 - [36mDEBUG[0m - send_request_body.complete
+2025-06-22 14:39:43,820 - httpcore.http11 - [36mDEBUG[0m - receive_response_headers.started request=<Request [b'PUT']>
+2025-06-22 14:39:43,928 - httpcore.http11 - [36mDEBUG[0m - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'transfer-encoding', b'chunked'), (b'content-encoding', b'br'), (b'content-type', b'application/json'), (b'vary', b'accept-encoding, Origin, Access-Control-Request-Method, Access-Control-Request-Headers'), (b'date', b'Sun, 22 Jun 2025 11:39:43 GMT')])
+2025-06-22 14:39:43,929 - httpx - [32mINFO[0m - HTTP Request: PUT http://localhost:6333/collections/info_agent_embeddings/points?wait=true "HTTP/1.1 200 OK"
+2025-06-22 14:39:43,931 - httpcore.http11 - [36mDEBUG[0m - receive_response_body.started request=<Request [b'PUT']>
+2025-06-22 14:39:43,932 - httpcore.http11 - [36mDEBUG[0m - receive_response_body.complete
+2025-06-22 14:39:43,932 - httpcore.http11 - [36mDEBUG[0m - response_closed.started
+2025-06-22 14:39:43,934 - httpcore.http11 - [36mDEBUG[0m - response_closed.complete
+2025-06-22 14:39:43,934 - httpcore.connection - [36mDEBUG[0m - close.started
+2025-06-22 14:39:43,936 - httpcore.connection - [36mDEBUG[0m - close.complete
+2025-06-22 14:39:43,961 - httpcore.connection - [36mDEBUG[0m - connect_tcp.started host='localhost' port=6333 local_address=None timeout=5.0 socket_options=None
+2025-06-22 14:39:43,962 - httpcore.connection - [36mDEBUG[0m - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000210356BB310>
+2025-06-22 14:39:43,963 - httpcore.http11 - [36mDEBUG[0m - send_request_headers.started request=<Request [b'PUT']>
+2025-06-22 14:39:43,964 - httpcore.http11 - [36mDEBUG[0m - send_request_headers.complete
+2025-06-22 14:39:43,964 - httpcore.http11 - [36mDEBUG[0m - send_request_body.started request=<Request [b'PUT']>
+2025-06-22 14:39:43,965 - httpcore.http11 - [36mDEBUG[0m - send_request_body.complete
+2025-06-22 14:39:43,966 - httpcore.http11 - [36mDEBUG[0m - receive_response_headers.started request=<Request [b'PUT']>
+2025-06-22 14:39:44,010 - httpcore.http11 - [36mDEBUG[0m - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'transfer-encoding', b'chunked'), (b'content-type', b'application/json'), (b'vary', b'accept-encoding, Origin, Access-Control-Request-Method, Access-Control-Request-Headers'), (b'content-encoding', b'br'), (b'date', b'Sun, 22 Jun 2025 11:39:43 GMT')])
+2025-06-22 14:39:44,011 - httpx - [32mINFO[0m - HTTP Request: PUT http://localhost:6333/collections/info_agent_embeddings/points?wait=true "HTTP/1.1 200 OK"
+2025-06-22 14:39:44,013 - httpcore.http11 - [36mDEBUG[0m - receive_response_body.started request=<Request [b'PUT']>
+2025-06-22 14:39:44,014 - httpcore.http11 - [36mDEBUG[0m - receive_response_body.complete
+2025-06-22 14:39:44,014 - httpcore.http11 - [36mDEBUG[0m - response_closed.started
+2025-06-22 14:39:44,015 - httpcore.http11 - [36mDEBUG[0m - response_closed.complete
+2025-06-22 14:39:44,015 - httpcore.connection - [36mDEBUG[0m - close.started
+2025-06-22 14:39:44,016 - httpcore.connection - [36mDEBUG[0m - close.complete
+2025-06-22 14:39:44,017 - utils.vector_db - [32mINFO[0m - Добавлено 143 документов в векторную БД
+2025-06-22 14:39:44,018 - agent - [32mINFO[0m - Обработано 143 блоков из 3 источников
+2025-06-22 14:39:44,020 - agent - [32mINFO[0m - Шаг 4: Ответы на вопросы
+2025-06-22 14:39:44,020 - agent - [32mINFO[0m - Обработка вопроса 1/1: Анализ рынка
+2025-06-22 14:39:44,020 - httpcore.http11 - [36mDEBUG[0m - send_request_headers.started request=<Request [b'POST']>
+2025-06-22 14:39:44,021 - httpcore.http11 - [36mDEBUG[0m - send_request_headers.complete
+2025-06-22 14:39:44,021 - httpcore.http11 - [36mDEBUG[0m - send_request_body.started request=<Request [b'POST']>
+2025-06-22 14:39:44,022 - httpcore.http11 - [36mDEBUG[0m - send_request_body.complete
+2025-06-22 14:39:44,022 - httpcore.http11 - [36mDEBUG[0m - receive_response_headers.started request=<Request [b'POST']>
+2025-06-22 14:39:44,051 - httpcore.http11 - [36mDEBUG[0m - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Server', b'nginx'), (b'Date', b'Sun, 22 Jun 2025 11:39:44 GMT'), (b'Content-Type', b'application/json; charset=utf-8'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Keep-Alive', b'timeout=15'), (b'Vary', b'Accept-Encoding'), (b'access-control-allow-credentials', b'true'), (b'access-control-allow-headers', b'Origin, X-Requested-With, Content-Type, Accept, Authorization'), (b'access-control-allow-methods', b'GET, POST, DELETE, OPTIONS'), (b'access-control-allow-origin', b'https://beta.saluteai.sberdevices.ru'), (b'x-request-id', b'02c0467f-b950-4979-8a3a-eabbb2d96db7'), (b'x-session-id', b'd3f7072d-1e0f-4966-ad6c-18c007c86a34'), (b'strict-transport-security', b'max-age=15768000; includeSubdomains; preload'), (b'x-content-type-options', b'nosniff'), (b'x-xss-protection', b'1; mode=block'), (b'x-frame-options', b'SAMEORIGIN'), (b'X-SP-CRID', b'40234413153:3'), (b'Content-Encoding', b'gzip')])
+2025-06-22 14:39:44,052 - httpx - [32mINFO[0m - HTTP Request: POST https://gigachat.sberdevices.ru/v1/embeddings "HTTP/1.1 200 OK"
+2025-06-22 14:39:44,055 - httpcore.http11 - [36mDEBUG[0m - receive_response_body.started request=<Request [b'POST']>
+2025-06-22 14:39:44,056 - httpcore.http11 - [36mDEBUG[0m - receive_response_body.complete
+2025-06-22 14:39:44,056 - httpcore.http11 - [36mDEBUG[0m - response_closed.started
+2025-06-22 14:39:44,056 - httpcore.http11 - [36mDEBUG[0m - response_closed.complete
+2025-06-22 14:39:44,058 - httpcore.connection - [36mDEBUG[0m - connect_tcp.started host='localhost' port=6333 local_address=None timeout=5.0 socket_options=None
+2025-06-22 14:39:44,060 - httpcore.connection - [36mDEBUG[0m - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000210356E9BD0>
+2025-06-22 14:39:44,060 - httpcore.http11 - [36mDEBUG[0m - send_request_headers.started request=<Request [b'POST']>
+2025-06-22 14:39:44,061 - httpcore.http11 - [36mDEBUG[0m - send_request_headers.complete
+2025-06-22 14:39:44,062 - httpcore.http11 - [36mDEBUG[0m - send_request_body.started request=<Request [b'POST']>
+2025-06-22 14:39:44,063 - httpcore.http11 - [36mDEBUG[0m - send_request_body.complete
+2025-06-22 14:39:44,064 - httpcore.http11 - [36mDEBUG[0m - receive_response_headers.started request=<Request [b'POST']>
+2025-06-22 14:39:44,072 - httpcore.http11 - [36mDEBUG[0m - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'transfer-encoding', b'chunked'), (b'vary', b'accept-encoding, Origin, Access-Control-Request-Method, Access-Control-Request-Headers'), (b'content-encoding', b'br'), (b'content-type', b'application/json'), (b'date', b'Sun, 22 Jun 2025 11:39:43 GMT')])
+2025-06-22 14:39:44,073 - httpx - [32mINFO[0m - HTTP Request: POST http://localhost:6333/collections/info_agent_embeddings/points/search "HTTP/1.1 200 OK"
+2025-06-22 14:39:44,074 - httpcore.http11 - [36mDEBUG[0m - receive_response_body.started request=<Request [b'POST']>
+2025-06-22 14:39:44,074 - httpcore.http11 - [36mDEBUG[0m - receive_response_body.complete
+2025-06-22 14:39:44,074 - httpcore.http11 - [36mDEBUG[0m - response_closed.started
+2025-06-22 14:39:44,075 - httpcore.http11 - [36mDEBUG[0m - response_closed.complete
+2025-06-22 14:39:44,075 - httpcore.connection - [36mDEBUG[0m - close.started
+2025-06-22 14:39:44,075 - httpcore.connection - [36mDEBUG[0m - close.complete
+2025-06-22 14:39:44,077 - utils.vector_db - [32mINFO[0m - Найдено 10 релевантных документов для запроса
+2025-06-22 14:39:44,078 - httpcore.http11 - [36mDEBUG[0m - send_request_headers.started request=<Request [b'POST']>
+2025-06-22 14:39:44,087 - httpcore.http11 - [36mDEBUG[0m - send_request_headers.complete
+2025-06-22 14:39:44,088 - httpcore.http11 - [36mDEBUG[0m - send_request_body.started request=<Request [b'POST']>
+2025-06-22 14:39:44,089 - httpcore.http11 - [36mDEBUG[0m - send_request_body.complete
+2025-06-22 14:39:44,089 - httpcore.http11 - [36mDEBUG[0m - receive_response_headers.started request=<Request [b'POST']>
+2025-06-22 14:39:44,227 - httpcore.http11 - [36mDEBUG[0m - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Server', b'nginx'), (b'Date', b'Sun, 22 Jun 2025 11:39:44 GMT'), (b'Content-Type', b'application/json; charset=utf-8'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Keep-Alive', b'timeout=15'), (b'Vary', b'Accept-Encoding'), (b'access-control-allow-credentials', b'true'), (b'access-control-allow-headers', b'Origin, X-Requested-With, Content-Type, Accept, Authorization'), (b'access-control-allow-methods', b'GET, POST, DELETE, OPTIONS'), (b'access-control-allow-origin', b'https://beta.saluteai.sberdevices.ru'), (b'x-request-id', b'6b29de68-7c70-428c-b04c-388fb51d2986'), (b'x-session-id', b'1ddda332-a3cb-4d16-95db-bfc0e31dc011'), (b'strict-transport-security', b'max-age=15768000; includeSubdomains; preload'), (b'x-content-type-options', b'nosniff'), (b'x-xss-protection', b'1; mode=block'), (b'x-frame-options', b'SAMEORIGIN'), (b'X-SP-CRID', b'40234413153:4'), (b'Content-Encoding', b'gzip')])
+2025-06-22 14:39:44,228 - httpx - [32mINFO[0m - HTTP Request: POST https://gigachat.sberdevices.ru/v1/embeddings "HTTP/1.1 200 OK"
+2025-06-22 14:39:44,230 - httpcore.http11 - [36mDEBUG[0m - receive_response_body.started request=<Request [b'POST']>
+2025-06-22 14:39:44,236 - httpcore.http11 - [36mDEBUG[0m - receive_response_body.complete
+2025-06-22 14:39:44,237 - httpcore.http11 - [36mDEBUG[0m - response_closed.started
+2025-06-22 14:39:44,237 - httpcore.http11 - [36mDEBUG[0m - response_closed.complete
+2025-06-22 14:39:44,244 - utils.vector_db - [36mDEBUG[0m - Найден дубликат документа с схожестью 0.902
+2025-06-22 14:39:44,244 - utils.vector_db - [36mDEBUG[0m - Найден дубликат документа с схожестью 0.901
+2025-06-22 14:39:44,245 - utils.vector_db - [36mDEBUG[0m - Найден дубликат документа с схожестью 0.855
+2025-06-22 14:39:44,245 - utils.vector_db - [36mDEBUG[0m - Найден дубликат документа с схожестью 0.908
+2025-06-22 14:39:44,246 - utils.vector_db - [36mDEBUG[0m - Найден дубликат документа с схожестью 0.889
+2025-06-22 14:39:44,246 - utils.vector_db - [36mDEBUG[0m - Найден дубликат документа с схожестью 0.860
+2025-06-22 14:39:44,247 - utils.vector_db - [36mDEBUG[0m - Найден дубликат документа с схожестью 0.922
+2025-06-22 14:39:44,247 - utils.vector_db - [36mDEBUG[0m - Найден дубликат документа с схожестью 0.882
+2025-06-22 14:39:44,247 - utils.vector_db - [36mDEBUG[0m - Найден дубликат документа с схожестью 0.869
+2025-06-22 14:39:44,248 - utils.vector_db - [32mINFO[0m - Удалено 9 дубликатов из 10 документов
+2025-06-22 14:39:44,248 - agent - [32mINFO[0m - Найдено 1 уникальных релевантных документов
+2025-06-22 14:39:44,251 - httpcore.connection - [36mDEBUG[0m - close.started
+2025-06-22 14:39:44,257 - httpcore.connection - [36mDEBUG[0m - close.complete
+2025-06-22 14:39:44,257 - httpcore.connection - [36mDEBUG[0m - connect_tcp.started host='gigachat.sberdevices.ru' port=443 local_address=None timeout=30.0 socket_options=None
+2025-06-22 14:39:44,281 - httpcore.connection - [36mDEBUG[0m - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000021034E846D0>
+2025-06-22 14:39:44,282 - httpcore.connection - [36mDEBUG[0m - start_tls.started ssl_context=<ssl.SSLContext object at 0x0000021034DD5E20> server_hostname='gigachat.sberdevices.ru' timeout=30.0
+2025-06-22 14:39:44,294 - httpcore.connection - [36mDEBUG[0m - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000021034E847D0>
+2025-06-22 14:39:44,295 - httpcore.http11 - [36mDEBUG[0m - send_request_headers.started request=<Request [b'POST']>
+2025-06-22 14:39:44,295 - httpcore.http11 - [36mDEBUG[0m - send_request_headers.complete
+2025-06-22 14:39:44,296 - httpcore.http11 - [36mDEBUG[0m - send_request_body.started request=<Request [b'POST']>
+2025-06-22 14:39:44,296 - httpcore.http11 - [36mDEBUG[0m - send_request_body.complete
+2025-06-22 14:39:44,297 - httpcore.http11 - [36mDEBUG[0m - receive_response_headers.started request=<Request [b'POST']>
+2025-06-22 14:39:48,749 - httpcore.http11 - [36mDEBUG[0m - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Server', b'nginx'), (b'Date', b'Sun, 22 Jun 2025 11:39:48 GMT'), (b'Content-Type', b'application/json; charset=utf-8'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Keep-Alive', b'timeout=15'), (b'Vary', b'Accept-Encoding'), (b'Access-Control-Allow-Credentials', b'true'), (b'Access-Control-Allow-Headers', b'Origin, X-Requested-With, Content-Type, Accept, Authorization'), (b'Access-Control-Allow-Methods', b'GET, POST, DELETE, OPTIONS'), (b'Access-Control-Allow-Origin', b'https://beta.saluteai.sberdevices.ru'), (b'X-Request-Id', b'bda62902-99ae-4e12-88b4-e751b9f156fd'), (b'X-Session-Id', b'77fef284-dbc7-4156-895e-ee1d0b000e4d'), (b'Strict-Transport-Security', b'max-age=15768000; includeSubdomains; preload'), (b'X-Content-Type-Options', b'nosniff'), (b'X-XSS-Protection', b'1; mode=block'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'Content-Encoding', b'gzip')])
+2025-06-22 14:39:48,751 - httpx - [32mINFO[0m - HTTP Request: POST https://gigachat.sberdevices.ru/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-22 14:39:48,754 - httpcore.http11 - [36mDEBUG[0m - receive_response_body.started request=<Request [b'POST']>
+2025-06-22 14:39:48,756 - httpcore.http11 - [36mDEBUG[0m - receive_response_body.complete
+2025-06-22 14:39:48,758 - httpcore.http11 - [36mDEBUG[0m - response_closed.started
+2025-06-22 14:39:48,759 - httpcore.http11 - [36mDEBUG[0m - response_closed.complete
+2025-06-22 14:39:48,760 - agent - [32mINFO[0m - Сгенерирован ответ на вопрос 1
+2025-06-22 14:39:48,761 - agent - [32mINFO[0m - Сгенерированы ответы на 1 вопросов
+2025-06-22 14:39:48,763 - agent - [32mINFO[0m - Шаг 5: Генерация итогового отчета
+2025-06-22 14:39:48,764 - httpcore.http11 - [36mDEBUG[0m - send_request_headers.started request=<Request [b'POST']>
+2025-06-22 14:39:48,765 - httpcore.http11 - [36mDEBUG[0m - send_request_headers.complete
+2025-06-22 14:39:48,765 - httpcore.http11 - [36mDEBUG[0m - send_request_body.started request=<Request [b'POST']>
+2025-06-22 14:39:48,766 - httpcore.http11 - [36mDEBUG[0m - send_request_body.complete
+2025-06-22 14:39:48,767 - httpcore.http11 - [36mDEBUG[0m - receive_response_headers.started request=<Request [b'POST']>
+2025-06-22 14:39:54,047 - httpcore.http11 - [36mDEBUG[0m - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Server', b'nginx'), (b'Date', b'Sun, 22 Jun 2025 11:39:54 GMT'), (b'Content-Type', b'application/json; charset=utf-8'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Keep-Alive', b'timeout=15'), (b'Vary', b'Accept-Encoding'), (b'Access-Control-Allow-Credentials', b'true'), (b'Access-Control-Allow-Headers', b'Origin, X-Requested-With, Content-Type, Accept, Authorization'), (b'Access-Control-Allow-Methods', b'GET, POST, DELETE, OPTIONS'), (b'Access-Control-Allow-Origin', b'https://beta.saluteai.sberdevices.ru'), (b'X-Request-Id', b'8e25067d-cb98-4ac6-84f0-133e18ea34d3'), (b'X-Session-Id', b'11122aee-28d0-43b0-90ae-a753e946ceee'), (b'Strict-Transport-Security', b'max-age=15768000; includeSubdomains; preload'), (b'X-Content-Type-Options', b'nosniff'), (b'X-XSS-Protection', b'1; mode=block'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'Content-Encoding', b'gzip')])
+2025-06-22 14:39:54,050 - httpx - [32mINFO[0m - HTTP Request: POST https://gigachat.sberdevices.ru/v1/chat/completions "HTTP/1.1 200 OK"
+2025-06-22 14:39:54,053 - httpcore.http11 - [36mDEBUG[0m - receive_response_body.started request=<Request [b'POST']>
+2025-06-22 14:39:54,053 - httpcore.http11 - [36mDEBUG[0m - receive_response_body.complete
+2025-06-22 14:39:54,054 - httpcore.http11 - [36mDEBUG[0m - response_closed.started
+2025-06-22 14:39:54,054 - httpcore.http11 - [36mDEBUG[0m - response_closed.complete
+2025-06-22 14:39:54,055 - agent - [32mINFO[0m - Итоговый отчет сгенерирован успешно
+2025-06-22 14:39:54,056 - agent - [32mINFO[0m - Обработка запроса завершена успешно

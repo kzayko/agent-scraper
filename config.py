@@ -39,3 +39,5 @@ WEB_DEBUG = os.getenv('WEB_DEBUG', 'False').lower() == 'true'
 # Валидация обязательных параметров
 if not GIGACHAT_USERNAME or not GIGACHAT_PASSWORD:
     raise ValueError("GIGACHAT_USERNAME и GIGACHAT_PASSWORD должны быть установлены в переменных окружения")
+
+DOCS_PER_ANSWER = int(os.getenv('DOCS_PER_ANSWER', 100))

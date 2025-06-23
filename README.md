@@ -58,6 +58,9 @@ GIGACHAT_VERIFY_SSL=False
 
 # Настройки Qdrant
 QDRANT_URL=http://localhost:6333
+
+# Количество документов-источников для генерации ответа
+DOCS_PER_ANSWER=100
 ```
 
 ### 3. Запуск Qdrant
@@ -133,6 +136,7 @@ print(result["final_report"])
 | `CHUNK_OVERLAP` | Перекрытие между блоками | 100 |
 | `SIMILARITY_THRESHOLD` | Порог схожести для удаления дубликатов | 0.85 |
 | `QDRANT_COLLECTION_NAME` | Имя коллекции в Qdrant | info_agent_embeddings |
+| `DOCS_PER_ANSWER` | Максимальное количество документов-источников, используемых для генерации ответа | 100 |
 
 ### GigaChat настройки
 

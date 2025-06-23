@@ -234,9 +234,13 @@ class InformationSummarizerAgent:
                     # Ищем релевантные документы
                     relevant_docs = self.vector_db.search_similar(
                         query=question,
-                        limit=10,
-                        threshold=0.3
+                        limit=config.DOCS_PER_ANSWER,
+                        threshold=config.SIMILARITY_THRESHOLD
                     )
+
+                    # Фильтрация: только параграфы из разрешённых источников (загруженных изначально)
+                    allowed_sources = set(state["sources"])
+                    relevant_docs = [doc for doc in relevant_docs if doc.get("source_url") in allowed_sources]
 
                     if not relevant_docs:
                         agent_logger.warning(f"Не найдено релевантных документов для вопроса: {question}")

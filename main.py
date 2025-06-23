@@ -4,6 +4,7 @@
 """
 
 import argparse
+from datetime import datetime  # Исправлено: импортируем datetime здесь
 import sys
 import json
 import os
@@ -167,7 +168,7 @@ def run_web_interface():
         print(f"❌ Ошибка импорта веб-приложения: {e}")
         sys.exit(1)
 
-def run_query_processing(query: str, sources_file: str, output_file: str = None):
+def run_query_processing(query: str, sources_file: str, output_file: str):
     """Обработка запроса пользователя"""
     print(f"🚀 Обработка запроса: {query}")
     print(f"📁 Источники: {sources_file}")
@@ -202,9 +203,11 @@ def run_query_processing(query: str, sources_file: str, output_file: str = None)
             print("=" * 80)
 
             # Сохранение результата в файл
-            if output_file:
-                save_result_to_file(result, output_file)
-                print(f"\n💾 Результат сохранен в: {output_file}")
+
+            if not output_file:
+                output_file = f"results/{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.json"
+            save_result_to_file(result, output_file)
+            print(f"\n💾 Результат сохранен в: {output_file}")
 
         else:
             print(f"❌ Ошибка при обработке: {result.get('error', 'Неизвестная ошибка')}")

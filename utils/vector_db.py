@@ -138,8 +138,10 @@ class VectorDatabase:
                 ),
                 limit=1
             )
-            if search_result[0]:
-                return search_result[0][0].payload.get('processing_date')
+            if search_result and search_result[0]:
+                first_point = search_result[0][0] if search_result[0] else None
+                if first_point and getattr(first_point, "payload", None):
+                    return first_point.payload.get('processing_date')
             return None
         except Exception as e:
             logger.error(f"Ошибка при получении даты обработки: {e}")

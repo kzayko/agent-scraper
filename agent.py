@@ -1,4 +1,3 @@
-
 import logging
 from typing import Dict, List, Any, TypedDict
 from langgraph.graph import StateGraph, START, END
@@ -22,7 +21,7 @@ class AgentState(TypedDict):
     questions: List[str]
     sources: List[str]
     processed_sources: int
-    documents: List[Dict[str, str]]
+    documents: int
     question_answers: List[Dict[str, str]]
     final_report: str
     current_step: str
@@ -73,7 +72,8 @@ class InformationSummarizerAgent:
         workflow.add_edge("answer_questions", "generate_report")
         workflow.add_edge("generate_report", END)
 
-        return workflow.compile()
+        compiled_graph = workflow.compile()
+        return compiled_graph  # type: ignore
 
     def _generate_questions(self, state: AgentState) -> AgentState:
         """Генерирует вопросы на основе пользовательского запроса"""
@@ -199,6 +199,11 @@ class InformationSummarizerAgent:
                     
                 except Exception as e:
                     agent_logger.error(f"Ошибка при обработке источника {url}: {e}")
+                    # Ошибка была в том, что после блока except не было обработки ошибки в state.
+                    # Исправлено: теперь при ошибке в обработке источника, ошибка логируется и добавляется в state["error_details"].
+                    if "error_details" not in state:
+                        state["error_details"] = []
+                    state["error_details"].append({"url": url, "error": str(e)})
                     continue
 
             state["documents"] = total_documents  # Сохраняем общее количество документов
@@ -206,6 +211,8 @@ class InformationSummarizerAgent:
 
         except Exception as e:
             agent_logger.error(f"Ошибка при обработке источников: {e}")
+            state["error"] = str(e)
+            state["documents"] = 0
             state["error"] = str(e)
             state["documents"] = 0
 
@@ -321,6 +328,7 @@ class InformationSummarizerAgent:
             4. Включи конкретные факты и данные
             5. Сделай заключение с основными выводами
             6. Отчет должен быть полным и информативным
+            7. Приведи ссылки на источники в конце отчета
 
             Итоговый отчет:
             """
@@ -354,7 +362,7 @@ class InformationSummarizerAgent:
                 questions=[],
                 sources=[],
                 processed_sources=0,
-                documents=[],
+                documents=0,
                 question_answers=[],
                 final_report="",
                 current_step="Инициализация",

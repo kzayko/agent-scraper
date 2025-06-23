@@ -20,6 +20,7 @@ def main():
   python main.py "Расскажи о машинном обучении"           # Обработка запроса
   python main.py "Анализ рынка" --output result.json     # Сохранение в файл
   python main.py --health                                # Проверка состояния
+  python main.py --clear-db                                # Очистка БД
         """
     )
 
@@ -58,13 +59,36 @@ def main():
         help='Подробный вывод'
     )
 
+    parser.add_argument(
+ 	'--clear-db',
+    	action='store_true',
+    	help='Полностью очистить векторную БД'
+    )
+
+    parser.add_argument(
+    	'--clear-before-date',
+    	help='Удалить документы, обработанные до указанной даты (формат: YYYY-MM-DD)'
+    )
     args = parser.parse_args()
 
     # Настройка логирования
-   # if args.verbose:
-    import logging
-    logging.getLogger().setLevel(logging.DEBUG)
-
+    if args.verbose:
+      import logging
+      logging.getLogger().setLevel(logging.DEBUG)
+    # Очистка БД
+    if args.clear_db:
+      from utils.vector_db import VectorDatabase
+      vector_db = VectorDatabase()
+      vector_db.clear_collection()
+      print("🗑️ Векторная БД полностью очищена")
+      sys.exit(0)
+    # Очистка БД от старых документов
+    if args.clear_before_date:
+      from utils.vector_db import VectorDatabase
+      vector_db = VectorDatabase()
+      vector_db.delete_by_date(args.clear_before_date)
+      print(f"🗑️ Удалены документы, обработанные до {args.clear_before_date}")
+      sys.exit(0)
     try:
         if args.health:
             run_health_check()

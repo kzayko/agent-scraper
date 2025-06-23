@@ -3,7 +3,10 @@ import logging
 from typing import List, Dict, Any, Optional
 from qdrant_client import QdrantClient
 from qdrant_client.models import VectorParams, Distance, PointStruct, UpdateCollection
+from datetime import datetime
+from qdrant_client.models import Filter, FieldCondition, MatchValue, Range,FilterSelector
 from langchain_gigachat import GigaChatEmbeddings
+
 import uuid
 import config
 
@@ -28,8 +31,19 @@ class VectorDatabase:
 
         # Получаем размерность векторов от первого эмбеддинга
         self.vector_size = None
-        self._setup_collection()
-
+        #self._setup_collection()
+    def _ensure_collection(self):
+        """Гарантирует существование коллекции"""
+        if not self._collection_exists():
+            self._setup_collection()
+    def _collection_exists(self) -> bool:
+        """Проверяет существование коллекции"""
+        try:
+            collections = self.client.get_collections()
+            return any(col.name == self.collection_name 
+                    for col in collections.collections)
+        except Exception:
+            return False
     def _get_vector_dimension(self) -> int:
         """Получает размерность векторов из GigaChat embeddings"""
         if self.vector_size is None:
@@ -90,23 +104,68 @@ class VectorDatabase:
         except Exception as e:
             logger.error(f"Ошибка при настройке коллекции: {e}")
             raise
+    def url_exists(self, url: str) -> bool:
+        self._ensure_collection()
+        """Проверяет, существует ли URL в базе данных"""
+        logger.info((f"Проверка наличия URL в БД: {url}"))
+        try:
+            search_result = self.client.count(
+                collection_name=self.collection_name,
+                count_filter=Filter(
+                    must=[FieldCondition(
+                        key="source_url",
+                        match=MatchValue(value=url) 
+                    )]
+                )
+            )
+            logger.info((f"Найдено:{search_result.count}"))
+            return search_result.count > 0
+        except Exception as e:
+            logger.error(f"Ошибка при проверке URL: {e}")
+            return False
+
+    def get_processing_date(self, url: str) -> Optional[str]:
+        self._ensure_collection()
+        """Возвращает дату обработки URL"""
+        try:
+            search_result = self.client.scroll(
+                collection_name=self.collection_name,
+                scroll_filter=Filter(
+                    must=[FieldCondition(
+                        key="source_url",
+                        match=MatchValue(value=url)
+                    )]
+                ),
+                limit=1
+            )
+            if search_result[0]:
+                return search_result[0][0].payload.get('processing_date')
+            return None
+        except Exception as e:
+            logger.error(f"Ошибка при получении даты обработки: {e}")
+            return None
 
     def add_documents(self, chunks: List[Dict[str, str]]) -> None:
         """Добавляет документы в векторную БД"""
+        self._ensure_collection()
+        if not chunks:
+            return
         try:
             texts = [chunk['content'] for chunk in chunks]
             embeddings = self.embeddings.embed_documents(texts)
 
             points = []
             for i, (chunk, embedding) in enumerate(zip(chunks, embeddings)):
+                payload = {
+                'content': chunk['content'],
+                'source_url': chunk['source_url'],
+                'chunk_index': i,
+                'processing_date': datetime.now().isoformat()  # Текущая дата
+                }
                 point = PointStruct(
                     id=str(uuid.uuid4()),
                     vector=embedding,
-                    payload={
-                        'content': chunk['content'],
-                        'source_url': chunk['source_url'],
-                        'chunk_index': i
-                    }
+                    payload=payload
                 )
                 points.append(point)
 
@@ -127,11 +186,12 @@ class VectorDatabase:
 
     def search_similar(self, query: str, limit: int = None, threshold: float = None) -> List[Dict]:
         """Поиск похожих документов по запросу"""
+        self._ensure_collection()
         try:
             if limit is None:
                 limit = 10
             if threshold is None:
-                threshold = 0.5
+                threshold = 0.9
 
             # Создаем эмбеддинг для запроса
             query_embedding = self.embeddings.embed_query(query)
@@ -147,61 +207,51 @@ class VectorDatabase:
             # Форматируем результаты
             results = []
             for scored_point in search_result:
+                content = f"{scored_point.payload['content']}\n<Source>{scored_point.payload['source_url']}</Source>"
                 results.append({
-                    'content': scored_point.payload['content'],
+                    'content': content,
                     'source_url': scored_point.payload['source_url'],
                     'score': scored_point.score,
-                    'id': scored_point.id
+                    'id': scored_point.id,
+                    'vector': scored_point.vector
                 })
 
             logger.info(f"Найдено {len(results)} релевантных документов для запроса")
-            return results
-
+            #unique_results = self.remove_duplicates_by_vectors(results, threshold)
+            unique_results=results
+            logger.info(f"Из них {len(unique_results)} уникальных")            
+            return unique_results
+            
         except Exception as e:
             logger.error(f"Ошибка при поиске документов: {e}")
             raise
-
-    def remove_duplicates(self, documents: List[Dict], threshold: float = None) -> List[Dict]:
-        """Удаляет дублирующиеся документы на основе схожести их содержимого"""
+    def remove_duplicates_by_vectors(self, search_results: List[Dict], threshold: float = None) -> List[Dict]:
+        """Удаляет дубликаты из результатов поиска по сохраненным векторам"""
         if threshold is None:
             threshold = config.SIMILARITY_THRESHOLD
+        
+        if not search_results:
+            return search_results
 
-        if not documents:
-            return documents
-
-        try:
-            # Создаем эмбеддинги для всех документов
-            texts = [doc['content'] for doc in documents]
-            embeddings = self.embeddings.embed_documents(texts)
-
-            # Находим и удаляем дубликаты
-            unique_docs = []
-            unique_embeddings = []
-
-            for i, (doc, embedding) in enumerate(zip(documents, embeddings)):
-                is_duplicate = False
-
-                # Сравниваем с уже добавленными документами
-                for unique_embedding in unique_embeddings:
-                    # Вычисляем косинусное сходство
-                    similarity = self._cosine_similarity(embedding, unique_embedding)
-
-                    if similarity >= threshold:
-                        is_duplicate = True
-                        logger.debug(f"Найден дубликат документа с схожестью {similarity:.3f}")
-                        break
-
-                if not is_duplicate:
-                    unique_docs.append(doc)
-                    unique_embeddings.append(embedding)
-
-            logger.info(f"Удалено {len(documents) - len(unique_docs)} дубликатов из {len(documents)} документов")
-            return unique_docs
-
-        except Exception as e:
-            logger.error(f"Ошибка при удалении дубликатов: {e}")
-            return documents  # Возвращаем оригинальный список в случае ошибки
-
+        unique_results = []
+        unique_vectors = []
+        
+        for result in search_results:
+            vector = result['vector']  # Вектор из результатов поиска
+            is_duplicate = False
+            
+            # Сравниваем с уже добавленными векторами
+            for unique_vector in unique_vectors:
+                similarity = self._cosine_similarity(vector, unique_vector)
+                if similarity >= threshold:
+                    is_duplicate = True
+                    break
+            
+            if not is_duplicate:
+                unique_results.append(result)
+                unique_vectors.append(vector)
+        
+        return unique_results
     def _cosine_similarity(self, vec1: List[float], vec2: List[float]) -> float:
         """Вычисляет косинусное сходство между двумя векторами"""
         import math
@@ -228,9 +278,29 @@ class VectorDatabase:
         except Exception as e:
             logger.error(f"Ошибка при очистке коллекции: {e}")
             raise
-
+    def delete_by_date(self, max_date: str):
+        """Удаляет документы, обработанные до указанной даты"""
+        self._ensure_collection()
+        try:
+            self.client.delete(
+                collection_name=self.collection_name,
+                points_selector=FilterSelector(
+                    filter=Filter(
+                        must=[
+                            FieldCondition(
+                                key="processing_date",
+                                range=Range(lt=max_date))
+                        ]
+                    )
+                )
+            )
+            logger.info(f"Удалены документы, обработанные до {max_date}")
+        except Exception as e:
+            logger.error(f"Ошибка при удалении по дате: {e}")
+            raise
     def get_collection_info(self) -> Dict[str, Any]:
         """Возвращает информацию о коллекции"""
+        self._ensure_collection()
         try:
             info = self.client.get_collection(self.collection_name)
             return {

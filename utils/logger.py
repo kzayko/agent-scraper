@@ -54,7 +54,7 @@ def setup_logging():
     # Корневой логгер
     root_logger = logging.getLogger()
     root_logger.handlers.clear()
-    root_logger.setLevel(logging.DEBUG)
+    #root_logger.setLevel(logging.DEBUG)
 
     # Консольный обработчик с цветами
     console_handler = logging.StreamHandler(sys.stdout)

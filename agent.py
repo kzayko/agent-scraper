@@ -166,48 +166,51 @@ class InformationSummarizerAgent:
         try:
             state["current_step"] = "Обработка источников"
             agent_logger.info(f"Шаг 3: {state['current_step']}")
-
-            all_documents = []
+            total_documents = 0  # Счетчик общего количества документов
 
             for i, url in enumerate(state["sources"], 1):
                 try:
                     agent_logger.info(f"Обработка источника {i}/{len(state['sources'])}: {url}")
-
+                    
+                    # Проверяем существование URL в БД
+                    if self.vector_db.url_exists(url):
+                        processing_date = self.vector_db.get_processing_date(url)
+                        agent_logger.info(f"Ссылка уже обработана: {url} (дата обработки: {processing_date})")
+                        continue
+                    
                     # Парсим веб-страницу
                     content = self.web_parser.parse_url(url)
-
                     if not content:
                         agent_logger.warning(f"Не удалось извлечь контент из {url}")
                         continue
-
+                    
                     # Разбиваем текст на блоки
                     chunks = self.text_processor.chunk_text(content, url)
-
-                    all_documents.extend(chunks)
+                    if not chunks:
+                        agent_logger.warning(f"Не удалось разбить контент из {url} на блоки")
+                        continue
+                    
+                    # Немедленно добавляем чанки в векторную БД
+                    agent_logger.info(f"Добавление {len(chunks)} блоков из источника {url} в векторную БД")
+                    self.vector_db.add_documents(chunks)
+                    total_documents += len(chunks)
                     state["processed_sources"] += 1
-
-                    agent_logger.info(f"Из источника {url} извлечено {len(chunks)} блоков")
-
+                    agent_logger.info(f"Источник {url} обработан, добавлено {len(chunks)} блоков")
+                    
                 except Exception as e:
                     agent_logger.error(f"Ошибка при обработке источника {url}: {e}")
                     continue
 
-            state["documents"] = all_documents
-
-            # Добавляем документы в векторную БД
-            if all_documents:
-                agent_logger.info("Добавление документов в векторную БД...")
-                self.vector_db.add_documents(all_documents)
-                agent_logger.info(f"Обработано {len(all_documents)} блоков из {state['processed_sources']} источников")
-            else:
-                agent_logger.warning("Не найдено документов для обработки")
+            state["documents"] = total_documents  # Сохраняем общее количество документов
+            agent_logger.info(f"Обработано {state['processed_sources']} источников, всего документов: {total_documents}")
 
         except Exception as e:
             agent_logger.error(f"Ошибка при обработке источников: {e}")
             state["error"] = str(e)
-            state["documents"] = []
+            state["documents"] = 0
 
         return state
+
 
     def _answer_questions(self, state: AgentState) -> AgentState:
         """Отвечает на каждый вопрос используя релевантные блоки из векторной БД"""
@@ -236,9 +239,10 @@ class InformationSummarizerAgent:
                         })
                         continue
 
-                    # Удаляем дубликаты
-                    unique_docs = self.vector_db.remove_duplicates(relevant_docs)
-                    agent_logger.info(f"Найдено {len(unique_docs)} уникальных релевантных документов")
+                    # Удаляем дубликаты (не нужно пока) 
+                    unique_docs=relevant_docs
+                    # unique_docs = self.vector_db.remove_duplicates(relevant_docs)
+                    # agent_logger.info(f"Найдено {len(unique_docs)} уникальных релевантных документов")
 
                     # Объединяем контент документов
                     combined_content = "\n\n".join([doc["content"] for doc in unique_docs])
@@ -258,6 +262,7 @@ class InformationSummarizerAgent:
                     3. Если информации недостаточно, укажи это
                     4. Структурируй ответ логично
                     5. Используй конкретные факты и данные из источников
+                    6. Источник каждого абзаца указан в теге <Source>..</Source>. В тексте всегда указывай в скобках ссылку на источник, из которого он взят.
 
                     Ответ:
                     """
@@ -340,8 +345,8 @@ class InformationSummarizerAgent:
         try:
             agent_logger.info(f"Начало обработки запроса: {user_query}")
 
-            # Очищаем векторную БД перед обработкой нового запроса
-            self.vector_db.clear_collection()
+            # НЕ Очищаем векторную БД перед обработкой нового запроса
+            # self.vector_db.clear_collection()
 
             # Инициализируем состояние
             initial_state = AgentState(
@@ -365,7 +370,7 @@ class InformationSummarizerAgent:
                 "questions": final_state["questions"],
                 "processed_sources": final_state["processed_sources"],
                 "total_sources": len(final_state["sources"]),
-                "total_documents": len(final_state["documents"]),
+                "total_documents": final_state["documents"],
                 "question_answers": final_state["question_answers"],
                 "final_report": final_state["final_report"],
                 "status": "success" if not final_state.get("error") else "error",

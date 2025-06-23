@@ -4,3 +4,4 @@ __pycache__
 *.xlsx
 *.log
 result.json
+results/

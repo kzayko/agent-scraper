@@ -22,6 +22,13 @@ class WebParser:
     def parse_url(self, url: str) -> Optional[str]:
         """Парсит URL и возвращает текстовый контент"""
         try:
+            from utils.vector_db import VectorDatabase
+            vector_db = VectorDatabase()
+    
+            if vector_db.url_exists(url):
+                processing_date = vector_db.get_processing_date(url)
+                logger.info(f"Ссылка уже обработана: {url} (дата обработки: {processing_date})")
+                return None  # Пропускаем обработку
             logger.info(f"Парсинг URL: {url}")
 
             for attempt in range(self.max_retries):

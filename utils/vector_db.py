@@ -1,4 +1,3 @@
-
 import logging
 from typing import List, Dict, Any, Optional
 from qdrant_client import QdrantClient

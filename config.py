@@ -1,4 +1,3 @@
-
 import os
 from dotenv import load_dotenv
 
@@ -29,7 +28,7 @@ GIGACHAT_PROFANITY_CHECK = os.getenv('GIGACHAT_PROFANITY_CHECK', 'True').lower()
 SOURCES_EXCEL_PATH = os.getenv('SOURCES_EXCEL_PATH', 'sources.xlsx')
 
 # Параметры логирования
-LOG_FILE_PATH = os.getenv('LOG_FILE_PATH', 'agent_logs.txt')
+LOG_FILE_PATH = os.getenv('LOG_FILE_PATH', 'results/agent_logs.txt')
 LOG_LEVEL = os.getenv('LOG_LEVEL', 'INFO')
 
 # Параметры веб-интерфейса

@@ -4,4 +4,5 @@ __pycache__
 *.xlsx
 *.log
 result.json
+agent_logs.txt
 results/

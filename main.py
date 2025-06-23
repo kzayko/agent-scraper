@@ -202,12 +202,15 @@ def run_query_processing(query: str, sources_file: str, output_file: str):
             print(result['final_report'])
             print("=" * 80)
 
-            # Сохранение результата в файл
-
-            if not output_file:
-                output_file = f"results/{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.json"
-            save_result_to_file(result, output_file)
-            print(f"\n💾 Результат сохранен в: {output_file}")
+            # Сохраняем результат всегда
+            if args.output:
+                output_path = args.output
+            else:
+                os.makedirs('results', exist_ok=True)
+                output_path = f"results/result_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+            with open(output_path, 'w', encoding='utf-8') as f:
+                json.dump(result, f, ensure_ascii=False, indent=2)
+            print(f"Результат сохранён в {output_path}")
 
         else:
             print(f"❌ Ошибка при обработке: {result.get('error', 'Неизвестная ошибка')}")

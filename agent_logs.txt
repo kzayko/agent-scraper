@@ -5202,3 +5202,9 @@
 2025-06-23 13:57:18,075 - werkzeug - [32mINFO[0m - 127.0.0.1 - - [23/Jun/2025 13:57:18] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
 2025-06-23 13:57:20,172 - werkzeug - [32mINFO[0m - 127.0.0.1 - - [23/Jun/2025 13:57:20] "GET /?user_query=Расскажи+о+аи+агентах&sources_file=sources.xlsx HTTP/1.1" 200 -
 2025-06-23 13:57:20,193 - werkzeug - [32mINFO[0m - 127.0.0.1 - - [23/Jun/2025 13:57:20] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+2025-06-23 14:05:16,891 - webapp - [32mINFO[0m - Запуск веб-приложения на 0.0.0.0:5000
+2025-06-23 14:05:16,912 - werkzeug - [32mINFO[0m - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.23:5000
+2025-06-23 14:05:16,912 - werkzeug - [32mINFO[0m - [33mPress CTRL+C to quit[0m

@@ -11,6 +11,7 @@ from utils.logger import get_logger
 from utils.vector_db import VectorDatabase
 from utils.web_parser import WebParser
 from utils.text_processor import TextProcessor
+import re
 
 # Настройка логирования
 agent_logger = get_logger("agent")
@@ -48,18 +49,21 @@ class InformationSummarizerAgent:
         self.web_parser = WebParser()
         self.text_processor = TextProcessor()
 
-        # Создание графа состояний
+        # Граф без sources_path по умолчанию (для CLI)
         self.graph = self._create_graph()
 
         agent_logger.info("Агент-суммаризатор инициализирован с GigaChat")
 
-    def _create_graph(self) -> StateGraph:
+    def _create_graph(self, sources_path: str = None) -> StateGraph:
         """Создает граф состояний для агента"""
         workflow = StateGraph(AgentState)
 
         # Добавляем узлы
         workflow.add_node("generate_questions", self._generate_questions)
-        workflow.add_node("load_sources", self._load_sources)
+        if sources_path is not None:
+            workflow.add_node("load_sources", lambda state: self._load_sources(state, sources_path))
+        else:
+            workflow.add_node("load_sources", self._load_sources)
         workflow.add_node("process_sources", self._process_sources)
         workflow.add_node("answer_questions", self._answer_questions)
         workflow.add_node("generate_report", self._generate_report)
@@ -102,11 +106,14 @@ class InformationSummarizerAgent:
             """
 
             message = HumanMessage(content=prompt)
+            agent_logger.info(f"[LLM REQUEST] PROMPT: {prompt.strip()}")
             response = self.llm.invoke([message])
+            agent_logger.info(f"[LLM RESPONSE] RESPONSE: {response.content.strip()}")
 
             # Парсим JSON ответ
             try:
-                result = json.loads(response.content)
+                clean_content = self.clean_json_str(response.content)
+                result = json.loads(clean_content)
                 questions = result.get("questions", [])
 
                 if not questions:
@@ -131,14 +138,36 @@ class InformationSummarizerAgent:
 
         return state
 
-    def _load_sources(self, state: AgentState) -> AgentState:
+    def clean_json_str(self, s: str) -> str:
+        """Удаляет markdown-блоки (```), лишние кавычки и пробелы для корректного парсинга JSON."""
+        s = s.strip()
+        # Удалить markdown-блоки
+        s = re.sub(r'^```[a-zA-Z]*', '', s)
+        s = re.sub(r'```$', '', s)
+        s = s.strip()
+        # Удалить одиночные/двойные кавычки вокруг всего блока
+        if (s.startswith('"') and s.endswith('"')) or (s.startswith("'") and s.endswith("'")):
+            s = s[1:-1].strip()
+        return s
+
+    def normalize_url(self, url: str) -> str:
+        return url.strip().rstrip('/').lower()
+
+    def _load_sources(self, state: AgentState, sources_path: str = None) -> AgentState:
         """Загружает список источников из Excel файла"""
         try:
             state["current_step"] = "Загрузка источников"
             agent_logger.info(f"Шаг 2: {state['current_step']}")
 
-            # Читаем Excel файл
-            df = pd.read_excel(config.SOURCES_EXCEL_PATH)
+            # Для WEB-режима sources_path обязателен, для CLI можно использовать config
+            if sources_path is None:
+                import config
+                excel_path = getattr(config, 'SOURCES_EXCEL_PATH', None)
+                if not excel_path:
+                    raise ValueError("Путь к файлу источников не задан!")
+            else:
+                excel_path = sources_path
+            df = pd.read_excel(excel_path)
 
             # Предполагаем, что URL находятся в первой колонке
             if 'url' in df.columns:
@@ -149,10 +178,12 @@ class InformationSummarizerAgent:
                 # Берем первую колонку
                 urls = df.iloc[:, 0].dropna().tolist()
 
-            state["sources"] = urls
+            # Нормализуем все URL
+            state["sources"] = [self.normalize_url(u) for u in urls]
             state["processed_sources"] = 0
 
-            agent_logger.info(f"Загружено {len(urls)} источников из {config.SOURCES_EXCEL_PATH}")
+            agent_logger.info(f"Список источников (state['sources']): {state['sources']}")
+            agent_logger.info(f"Загружено {len(urls)} источников из {excel_path}")
 
         except Exception as e:
             agent_logger.error(f"Ошибка при загрузке источников: {e}")
@@ -168,7 +199,9 @@ class InformationSummarizerAgent:
             agent_logger.info(f"Шаг 3: {state['current_step']}")
             total_documents = 0  # Счетчик общего количества документов
 
-            for i, url in enumerate(state["sources"], 1):
+            # Обрабатываем только те источники, которые есть в текущем списке state["sources"]
+            current_sources = list(state["sources"])
+            for i, url in enumerate(current_sources, 1):
                 try:
                     agent_logger.info(f"Обработка источника {i}/{len(state['sources'])}: {url}")
                     
@@ -240,7 +273,7 @@ class InformationSummarizerAgent:
 
                     # Фильтрация: только параграфы из разрешённых источников (загруженных изначально)
                     allowed_sources = set(state["sources"])
-                    relevant_docs = [doc for doc in relevant_docs if doc.get("source_url") in allowed_sources]
+                    relevant_docs = [doc for doc in relevant_docs if self.normalize_url(doc.get("source_url", "")) in allowed_sources]
 
                     if not relevant_docs:
                         agent_logger.warning(f"Не найдено релевантных документов для вопроса: {question}")
@@ -279,7 +312,9 @@ class InformationSummarizerAgent:
                     """
 
                     message = HumanMessage(content=prompt)
+                    agent_logger.info(f"[LLM REQUEST] PROMPT: {prompt.strip()}")
                     response = self.llm.invoke([message])
+                    agent_logger.info(f"[LLM RESPONSE] RESPONSE: {response.content.strip()}")
 
                     question_answers.append({
                         "question": question,
@@ -338,7 +373,9 @@ class InformationSummarizerAgent:
             """
 
             message = HumanMessage(content=prompt)
+            agent_logger.info(f"[LLM REQUEST] PROMPT: {prompt.strip()}")
             response = self.llm.invoke([message])
+            agent_logger.info(f"[LLM RESPONSE] RESPONSE: {response.content.strip()}")
 
             state["final_report"] = response.content
             state["current_step"] = "Завершено"
@@ -352,13 +389,10 @@ class InformationSummarizerAgent:
 
         return state
 
-    def process_query(self, user_query: str) -> Dict[str, Any]:
+    def process_query(self, user_query: str, sources_path: str) -> Dict[str, Any]:
         """Основной метод обработки запроса пользователя"""
         try:
             agent_logger.info(f"Начало обработки запроса: {user_query}")
-
-            # НЕ Очищаем векторную БД перед обработкой нового запроса
-            # self.vector_db.clear_collection()
 
             # Инициализируем состояние
             initial_state = AgentState(
@@ -373,8 +407,10 @@ class InformationSummarizerAgent:
                 error=""
             )
 
-            # Выполняем граф состояний
-            final_state = self.graph.invoke(initial_state)
+            # Создаём новый граф для каждого запроса
+            graph = self._create_graph(sources_path)
+
+            final_state = graph.invoke(initial_state)
 
             # Формируем результат
             result = {

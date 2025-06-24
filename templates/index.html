@@ -162,6 +162,41 @@
             color: #6c757d;
             font-size: 14px;
         }
+        .download-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .download-btn {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        .download-btn:hover {
+            background: linear-gradient(135deg, #20c997, #17a2b8);
+            transform: translateY(-1px);
+        }
+        .download-btn.secondary {
+            background: linear-gradient(135deg, #6c757d, #495057);
+        }
+        .download-btn.secondary:hover {
+            background: linear-gradient(135deg, #495057, #343a40);
+        }
+        .download-btn.pdf {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+        }
+        .download-btn.pdf:hover {
+            background: linear-gradient(135deg, #c82333, #a71e2a);
+        }
     </style>
 </head>
 <body>
@@ -211,6 +246,7 @@
                 <h3>📊 Результаты анализа</h3>
                 <div id="statistics" class="statistics"></div>
                 <div id="result" class="result-text"></div>
+                <div id="downloadLinks" style="margin-top: 20px;"></div>
             </div>
         </div>
     </div>
@@ -238,7 +274,7 @@
                 const result = await response.json();
                 if (result.success) {
                     updateStatus('success', '✅ Анализ завершен успешно!');
-                    displayResult(result.data);
+                    displayResult(result.data, result.download_links);
                 } else {
                     updateStatus('error', `❌ Ошибка: ${result.error}`);
                 }
@@ -248,6 +284,7 @@
                 document.getElementById('submitButton').disabled = false;
                 document.getElementById('buttonText').innerHTML = '🚀 Запустить анализ';
                 stopLogPolling();
+                document.getElementById('sources_file').value = '';
             }
         });
         function updateStatus(type, message) {
@@ -274,7 +311,7 @@
                 clearInterval(processingInterval);
             }
         }
-        function displayResult(data) {
+        function displayResult(data, downloadLinks) {
             const statisticsHTML = `
                 <div class="stat-item">
                     <div class="stat-number">${data.processed_sources}</div>
@@ -295,6 +332,29 @@
             `;
             document.getElementById('statistics').innerHTML = statisticsHTML;
             document.getElementById('result').textContent = data.final_report;
+            const linksDiv = document.getElementById('downloadLinks');
+            if (downloadLinks && downloadLinks.result && downloadLinks.logs) {
+                let linksHTML = '<div class="download-buttons">';
+                if (downloadLinks.result) {
+                    linksHTML += `<a href="${downloadLinks.result}" class="download-btn" download>⬇️ JSON результат</a>`;
+                }
+                if (downloadLinks.markdown) {
+                    linksHTML += `<a href="${downloadLinks.markdown}" class="download-btn" download>📝 Markdown отчёт</a>`;
+                }
+                if (downloadLinks.pdf) {
+                    linksHTML += `<a href="${downloadLinks.pdf}" class="download-btn pdf" download>📄 PDF отчёт</a>`;
+                }
+                if (downloadLinks.logs) {
+                    linksHTML += `<a href="${downloadLinks.logs}" class="download-btn secondary" download>📋 Сокращённые логи</a>`;
+                }
+                if (downloadLinks.full_logs) {
+                    linksHTML += `<a href="${downloadLinks.full_logs}" class="download-btn secondary" download>📋 Полные логи</a>`;
+                }
+                linksHTML += '</div>';
+                linksDiv.innerHTML = linksHTML;
+            } else {
+                linksDiv.innerHTML = '';
+            }
             document.getElementById('resultContainer').style.display = 'block';
         }
     </script>

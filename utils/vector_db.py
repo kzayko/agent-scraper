@@ -108,6 +108,8 @@ class VectorDatabase:
         """Проверяет, существует ли URL в базе данных"""
         logger.info((f"Проверка наличия URL в БД: {url}"))
         try:
+            # Нормализуем url так же, как при добавлении
+            url = url.strip().rstrip('/').lower()
             search_result = self.client.count(
                 collection_name=self.collection_name,
                 count_filter=Filter(

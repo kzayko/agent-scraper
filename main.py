@@ -179,7 +179,7 @@ def run_query_processing(query: str, sources_file: str, output_file: str):
             print(f"❌ Файл источников не найден: {sources_file}")
             sys.exit(1)
 
-        # Устанавливаем путь к источникам
+        # Устанавливаем путь к источникам ТОЛЬКО для CLI
         import config
         config.SOURCES_EXCEL_PATH = sources_file
 
@@ -188,7 +188,7 @@ def run_query_processing(query: str, sources_file: str, output_file: str):
         agent = get_agent()
 
         print("⏳ Обработка запроса...")
-        result = agent.process_query(query)
+        result = agent.process_query(query, sources_path=sources_file)
 
         if result['status'] == 'success':
             print("\n✅ Обработка завершена успешно!")

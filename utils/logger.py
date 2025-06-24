@@ -1,26 +1,30 @@
-
 import logging
 import sys
 from typing import List
 import config
 
 class WebLogHandler(logging.Handler):
-    """Обработчик логов для веб-интерфейса"""
+    """Обработчик логов для веб-интерфейса (сокращённый формат)"""
 
     def __init__(self, logs_list: List[str]):
         super().__init__()
         self.logs_list = logs_list
+        # Форматтер не нужен, web-лог — только текст сообщения
 
     def emit(self, record):
-        """Добавляет запись лога в список для веб-интерфейса"""
+        """Добавляет сокращённую запись лога в список для веб-интерфейса"""
         try:
-            log_entry = self.format(record)
-            self.logs_list.append(log_entry)
-
+            msg = record.getMessage()
+            # Пропускаем LLM-запросы и ответы
+            if '[LLM REQUEST]' in msg or '[LLM RESPONSE]' in msg:
+                return
+            # Пропускаем логи от Flask и HTTP-библиотек
+            if record.name in ['flask', 'werkzeug', 'requests', 'urllib3'] or record.name.startswith('flask') or record.name.startswith('werkzeug'):
+                return
+            self.logs_list.append(msg)
             # Ограничиваем количество логов для экономии памяти
             if len(self.logs_list) > 1000:
                 self.logs_list.pop(0)
-
         except Exception:
             self.handleError(record)
 
